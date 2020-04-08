@@ -1,0 +1,4 @@
+type Stylable = {
+  className?: string
+}
+

@@ -23,6 +23,7 @@ module.exports = {
     historyApiFallback: true,
     // hot: true,
   },
+  devtool: 'inline-source-map',
   module: {
     rules: [
       {
