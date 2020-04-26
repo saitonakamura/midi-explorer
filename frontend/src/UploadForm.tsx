@@ -4,9 +4,9 @@ import { uploadSongEffect, Song } from './api'
 import { cx, delayV } from './helpers'
 import { Mutator } from 'final-form'
 
-uploadSongEffect.use((v) => {
-  return delayV(({} as unknown) as Song, 1000)
-})
+// uploadSongEffect.use((v) => {
+//   return delayV(({} as unknown) as Song, 1000)
+// })
 
 type FormValues = {
   type: 'gp3' | 'gp5' | 'midi'
@@ -91,7 +91,11 @@ export const UploadForm = () => {
       const file = fileInputRef.current.files[0]
 
       return fileAsUInt8Array(file).then((uint8array) =>
-        uploadSongEffect({ ...values, file: uint8array, name: file.name }),
+        uploadSongEffect({ ...values, file: uint8array, name: file.name }).then(
+          console.log,
+        ).catch(error => {
+          console.error(error)
+        }),
       )
     },
     [fileInputRef.current],

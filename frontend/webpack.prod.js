@@ -1,8 +1,6 @@
 // @ts-check
 const merge = require('webpack-merge')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
-  .BundleAnalyzerPlugin
 
 const common = require('./webpack.common')
 
@@ -15,7 +13,7 @@ const prod = merge(common, {
       filename: '[name].css',
       chunkFilename: '[id].css',
     }),
-    // new BundleAnalyzerPlugin(),
+    // require('webpack-bundle-analyzer').BundleAnalyzerPlugin,
   ],
   module: {
     rules: [

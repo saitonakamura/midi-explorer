@@ -1,4 +1,5 @@
 import { createEffect } from 'effector'
+import { validate } from 'superstruct-ts-transformer'
 
 export type Message = {
   type: string
@@ -36,7 +37,7 @@ export type Song = {
   tracks: Track[]
 }
 
-const rootApiUrl = 'http://localhost:8081'
+const rootApiUrl = 'http://localhost:5000'
 
 const fail4xx = (response: Response) => {
   if (response.status >= 400 && response.status < 500) {
@@ -52,7 +53,9 @@ const processResponse = (response: Response) => {
 }
 
 const _uploadSong = (): Promise<Song> =>
-  fetch(`${rootApiUrl}/process`, { method: 'POST' }).then(processResponse)
+  fetch(`${rootApiUrl}/song/process`, { method: 'POST' })
+    .then(processResponse)
+    .then((json) => validate<Song>(json))
 
 export const uploadSongEffect = createEffect('uploadSong', {
   handler: _uploadSong,

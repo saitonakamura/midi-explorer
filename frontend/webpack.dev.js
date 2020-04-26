@@ -19,21 +19,10 @@ const dev = merge(common, {
     rules: [
       {
         test: /\.css$/,
-        exclude: /node_modules/,
         use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              // hmr: true,
-            },
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              importLoaders: 1,
-            },
-          },
-          { loader: 'postcss-loader' },
+          'style-loader',
+          'css-loader',
+          'postcss-loader',
         ],
       },
     ],
