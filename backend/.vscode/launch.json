@@ -5,11 +5,29 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": ".NET Core Launch (web)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/Api/bin/Debug/net5.0/Api.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/Api",
+            "stopAtEntry": false,
+            // "serverReadyAction": {
+            //     "action": "openExternally",
+            //     "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            // },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "requireExactSource": false
+        },
+        {
             "name": ".NET Core Launch (console)",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/Tests/bin/Debug/netcoreapp3.1/Tests.dll",
+            "program": "${workspaceFolder}/Tests/bin/Debug/net5.0/Tests.dll",
             "args": [],
             "cwd": "${workspaceFolder}/Tests",
             "console": "internalConsole",

@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Core.fs" />
+    <Compile Include="FromNative.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GuitarPro\GuitarPro.csproj" />
+  </ItemGroup>
+</Project>

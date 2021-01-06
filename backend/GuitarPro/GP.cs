@@ -1,7 +1,7 @@
 using System.IO;
 using Serilog;
 
-namespace Core.GuitarPro
+namespace MidiExplorer.GuitarPro
 {
     public class GP
     {
