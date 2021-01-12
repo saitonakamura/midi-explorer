@@ -1,11 +1,10 @@
 // @ts-check
-const merge = require('webpack-merge')
+const { merge } = require('webpack-merge')
 const path = require('path')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const common = require('./webpack.common')
 
-/** @type {import('webpack').Configuration} */
+/** @type {import('webpack').Configuration} & { devServer: FIXME } */
 const dev = merge(common, {
   mode: 'development',
   devServer: {
@@ -21,8 +20,8 @@ const dev = merge(common, {
         test: /\.css$/,
         use: [
           'style-loader',
-          'css-loader',
-          'postcss-loader',
+          { loader: 'css-loader' },
+          { loader: 'postcss-loader' },
         ],
       },
     ],

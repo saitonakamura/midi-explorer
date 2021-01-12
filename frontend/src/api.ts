@@ -52,7 +52,7 @@ const processResponse = (response: Response) => {
   return toJson(response)
 }
 
-const _uploadSong = (): Promise<Song> =>
+const _uploadSong = (data: FIXME): Promise<Song> =>
   fetch(`${rootApiUrl}/song/process`, { method: 'POST' })
     .then(processResponse)
     .then((json) => validate<Song>(json))

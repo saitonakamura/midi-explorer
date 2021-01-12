@@ -1,5 +1,5 @@
 // @ts-check
-const merge = require('webpack-merge')
+const { merge } = require('webpack-merge')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const common = require('./webpack.common')
@@ -24,8 +24,8 @@ const prod = merge(common, {
             loader: MiniCssExtractPlugin.loader,
             options: {},
           },
-          'css-loader',
-          'postcss-loader',
+          { loader: 'css-loader' },
+          { loader: 'postcss-loader' },
         ],
       },
     ],

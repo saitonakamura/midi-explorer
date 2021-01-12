@@ -31,8 +31,8 @@ function RadioButton<
         props.className,
         'text-sm font-bold px-4 py-2 cursor-pointer',
         props.values[props.name] === props.value
-          ? 'bg-teal-500 hover:bg-teal-600 text-white'
-          : 'bg-gray-300 hover:bg-gray-400 text-gray-800',
+          ? 'bg-green-500 hover:bg-green-600 text-gray-50'
+          : 'bg-gray-300 hover:bg-gray-400 text-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-50',
         {
           'rounded-l': props.position === 'left',
           'rounded-r': props.position === 'right',
@@ -108,7 +108,7 @@ export const UploadForm = () => {
       render={({ handleSubmit, form, submitting, pristine, values }) => (
         <form
           onSubmit={handleSubmit}
-          className="bg-teal-100 shadow-md rounded p-8"
+          className="bg-gray-100 dark:bg-gray-800 shadow-md rounded p-8"
         >
           <div className="mb-4">
             <Field<FormValues['file']> name="file">
@@ -148,7 +148,7 @@ export const UploadForm = () => {
           <div>
             <button
               className={cx(
-                'bg-teal-700 hover:bg-teal-800 px-3 py-2 rounded text-white',
+                'bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-800 px-3 py-2 rounded text-white',
                 { 'cursor-not-allowed opacity-50': submitting },
               )}
               type="submit"
