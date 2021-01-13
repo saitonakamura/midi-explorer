@@ -35,6 +35,12 @@ const config = {
           // { loader: 'react-hot-loader/webpack' },
         ],
       },
+      {
+        test: /\.svg$/,
+        exclude: /node_modules/,
+        use: [{ loader: 'file-loader' }],
+        // use: [{ loader: '@svgr/webpack', options: { babel: false } }],
+      },
     ],
   },
   plugins: [

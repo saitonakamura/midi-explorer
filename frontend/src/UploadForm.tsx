@@ -1,8 +1,12 @@
 import React, { useRef, useCallback } from 'react'
 import { Form, Field } from 'react-final-form'
 import { uploadSongEffect, Song } from './api'
-import { cx, delayV } from './helpers'
+// import { delayV } from './helpers'
+import { tw, twIf } from './tw'
 import { Mutator } from 'final-form'
+import { fileAsUInt8Array } from './utils'
+import { RadioButton } from './ui/RadioButton'
+import { Spinner } from './ui/Spinner'
 
 // uploadSongEffect.use((v) => {
 //   return delayV(({} as unknown) as Song, 1000)
@@ -12,64 +16,6 @@ type FormValues = {
   type: 'gp3' | 'gp5' | 'midi'
   file: unknown
 }
-
-function RadioButton<
-  TFormValues extends Record<string, any>,
-  TKey extends keyof TFormValues
->(
-  props: {
-    position: 'left' | 'right' | 'between'
-    name: keyof TFormValues
-    value: TFormValues[TKey]
-    content: React.ReactNode
-    values: TFormValues
-  } & Stylable,
-) {
-  return (
-    <label
-      className={cx(
-        props.className,
-        'text-sm font-bold px-4 py-2 cursor-pointer',
-        props.values[props.name] === props.value
-          ? 'bg-green-500 hover:bg-green-600 text-gray-50'
-          : 'bg-gray-300 hover:bg-gray-400 text-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-50',
-        {
-          'rounded-l': props.position === 'left',
-          'rounded-r': props.position === 'right',
-        },
-      )}
-    >
-      <Field<TFormValues[TKey]>
-        name={(props.name as unknown) as any}
-        component="input"
-        type="radio"
-        value={props.value}
-        className="appearance-none"
-      />
-      {props.content}
-    </label>
-  )
-}
-
-const fileAsUInt8Array = (file: File): Promise<Uint8Array> =>
-  new Promise((resolve, reject) => {
-    const reader = new FileReader()
-    reader.onload = function () {
-      if (!this.result) {
-        reject(`result array buffer of file ${file.name} is null`)
-        return
-      }
-
-      if (typeof this.result === 'string') {
-        reject(`result array buffer of file ${file.name} is string`)
-        return
-      }
-
-      const arrayBuffer = this.result
-      resolve(new Uint8Array(arrayBuffer))
-    }
-    reader.readAsArrayBuffer(file)
-  })
 
 const setTypeBasedOnFile: Mutator<FormValues> = (_, state, tools) => {
   if (state.lastFormState?.values.file) {
@@ -91,11 +37,11 @@ export const UploadForm = () => {
       const file = fileInputRef.current.files[0]
 
       return fileAsUInt8Array(file).then((uint8array) =>
-        uploadSongEffect({ ...values, file: uint8array, name: file.name }).then(
-          console.log,
-        ).catch(error => {
-          console.error(error)
-        }),
+        uploadSongEffect({ ...values, file: uint8array, name: file.name })
+          .then(console.log)
+          .catch((error) => {
+            console.error(error)
+          }),
       )
     },
     [fileInputRef.current],
@@ -108,7 +54,13 @@ export const UploadForm = () => {
       render={({ handleSubmit, form, submitting, pristine, values }) => (
         <form
           onSubmit={handleSubmit}
-          className="bg-gray-100 dark:bg-gray-800 shadow-md rounded p-8"
+          className={tw([
+            'bg-gray-100',
+            'dark:bg-gray-800',
+            'shadow-md',
+            'rounded',
+            'p-8',
+          ])}
         >
           <div className="mb-4">
             <Field<FormValues['file']> name="file">
@@ -147,13 +99,20 @@ export const UploadForm = () => {
           </div>
           <div>
             <button
-              className={cx(
-                'bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-800 px-3 py-2 rounded text-white',
-                { 'cursor-not-allowed opacity-50': submitting },
-              )}
+              className={tw([
+                'bg-green-600',
+                'hover:bg-green-700',
+                'dark:bg-green-700',
+                'dark:hover:bg-green-800',
+                'px-3',
+                'py-2',
+                'rounded',
+                'text-white',
+                ...twIf(['cursor-not-allowed', 'opacity-50'], submitting),
+              ])}
               type="submit"
             >
-              Show me!
+              Show me! <Spinner />
             </button>
           </div>
         </form>
