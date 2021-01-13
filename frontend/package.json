@@ -41,7 +41,7 @@
     "effector": "^21.2.0",
     "effector-react": "^21.0.4",
     "final-form": "^4.19.1",
-    "react": "^0.0.0-experimental-27659559e",
+    "react": "^0.14.0",
     "react-dom": "^0.0.0-experimental-27659559e",
     "react-final-form": "^6.4.0",
     "react-hot-loader": "^4.12.20",
