@@ -2,7 +2,15 @@ import classnames from 'classnames'
 
 type TailwindPosition = 'static' | 'absolute' | 'fixed' | 'relative' | 'sticky'
 
-type TailwindLayout = TailwindPosition
+type TailwindTRBLSize = '-1/2' | '-full'
+
+type TailwindTRBL = `${'' | '-'}${
+  | 'top'
+  | 'right'
+  | 'bottom'
+  | 'left'}${TailwindTRBLSize}`
+
+type TailwindLayout = TailwindPosition | TailwindTRBL
 
 type TailwindPaddingSize =
   | '-0'
@@ -25,6 +33,26 @@ type TailwindPaddingSide = '' | 't' | 'r' | 'b' | 'l' | 'x' | 'y'
 type TailwindPadding = `p${TailwindPaddingSide}${TailwindPaddingSize}`
 
 type TailwindSpacing = TailwindPadding
+
+export type TailwindHeightWidthSize =
+  | '4'
+  | '5'
+  | '6'
+  | '7'
+  | '8'
+  | '9'
+  | '10'
+  | '11'
+  | '12'
+  | '14'
+  | '16'
+  | '20'
+
+type TailwindWidth = `w-${TailwindHeightWidthSize}`
+
+type TailwindHeight = `h-${TailwindHeightWidthSize}`
+
+type TailwindSizing = TailwindWidth | TailwindHeight
 
 type TailwindColorName =
   | 'gray'
@@ -151,6 +179,16 @@ type TailwindAnimation = 'animate-spin'
 
 type TailwindTransitionsAnimations = TailwindAnimation
 
+type TailwindTransform = 'transform' | 'transform-gpu' | 'transform-none'
+
+type TailwindTranslateSize = '1/2' | 'full'
+
+type TailwindTranslate = `${'' | '-'}${
+  | 'translate-x'
+  | 'translate-y'}-${TailwindTranslateSize}`
+
+type TailwindTransforms = TailwindTransform | TailwindTranslate
+
 type TailwindCursorType =
   | '-auto'
   | '-default'
@@ -162,7 +200,9 @@ type TailwindCursorType =
 
 type TailwindCursor = `cursor${TailwindCursorType}`
 
-type TailwindInteractivity = TailwindCursor
+type TailwindPointerEvents = 'pointer-events-none' | 'pointer-events-auto'
+
+type TailwindInteractivity = TailwindCursor | TailwindPointerEvents
 
 type TailwindHover = `hover:${TailwindBackColor | TailwindTextColor}`
 
@@ -177,10 +217,12 @@ type TailwindClass =
   | TailwindLayout
   | TailwindTypography
   | TailwindSpacing
+  | TailwindSizing
   | TailwindBackgrounds
   | TailwindBorders
   | TailwindEffects
   | TailwindTransitionsAnimations
+  | TailwindTransforms
   | TailwindInteractivity
   | TailwindCoreConcepts
 

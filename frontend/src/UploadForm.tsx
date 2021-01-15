@@ -1,16 +1,16 @@
 import React, { useRef, useCallback } from 'react'
 import { Form, Field } from 'react-final-form'
 import { uploadSongEffect, Song } from './api'
-// import { delayV } from './helpers'
+import { delayV } from './helpers'
 import { tw, twIf } from './tw'
 import { Mutator } from 'final-form'
 import { fileAsUInt8Array } from './utils'
 import { RadioButton } from './ui/RadioButton'
-import { Spinner } from './ui/Spinner'
+import { Button } from './ui/Button'
 
-// uploadSongEffect.use((v) => {
-//   return delayV(({} as unknown) as Song, 1000)
-// })
+uploadSongEffect.use((v) => {
+  return delayV(({} as unknown) as Song, 1000)
+})
 
 type FormValues = {
   type: 'gp3' | 'gp5' | 'midi'
@@ -27,22 +27,23 @@ export const UploadForm = () => {
 
   const uploadSong = useCallback(
     (values: FormValues) => {
-      if (
-        !fileInputRef.current?.files ||
-        fileInputRef.current.files.length <= 0
-      ) {
-        return
-      }
+      return uploadSongEffect({})
+      // if (
+      //   !fileInputRef.current?.files ||
+      //   fileInputRef.current.files.length <= 0
+      // ) {
+      //   return
+      // }
 
-      const file = fileInputRef.current.files[0]
+      // const file = fileInputRef.current.files[0]
 
-      return fileAsUInt8Array(file).then((uint8array) =>
-        uploadSongEffect({ ...values, file: uint8array, name: file.name })
-          .then(console.log)
-          .catch((error) => {
-            console.error(error)
-          }),
-      )
+      // return fileAsUInt8Array(file).then((uint8array) =>
+      //   uploadSongEffect({ ...values, file: uint8array, name: file.name })
+      //     .then(console.log)
+      //     .catch((error) => {
+      //       console.error(error)
+      //     }),
+      // )
     },
     [fileInputRef.current],
   )
@@ -98,22 +99,12 @@ export const UploadForm = () => {
             />
           </div>
           <div>
-            <button
-              className={tw([
-                'bg-green-600',
-                'hover:bg-green-700',
-                'dark:bg-green-700',
-                'dark:hover:bg-green-800',
-                'px-3',
-                'py-2',
-                'rounded',
-                'text-white',
-                ...twIf(['cursor-not-allowed', 'opacity-50'], submitting),
-              ])}
+            <Button
+              variant="primary"
+              state={submitting ? { key: 'loading' } : undefined}
+              children="Show me!"
               type="submit"
-            >
-              Show me! <Spinner />
-            </button>
+            />
           </div>
         </form>
       )}
