@@ -2,32 +2,34 @@ import { createEffect } from 'effector'
 import { validate } from 'superstruct-ts-transformer'
 
 export type Message = {
-  type: string
-  time: number
-  isMeta: boolean
-  code: number
-  number: number
-  text: string
-  name: string
-  channel: number
-  port: number
-  tempo: number
-  numerator: number
-  denominator: number
-  clocksPerTick: number
-  // notated32: number
-  key: number
-  isMajoer: boolean
+  // type: string
+  // time: number
+  // isMeta: boolean
+  // code: number
+  // number: number
+  // text: string
+  // name: string
+  // channel: number
+  // port: number
+  // tempo: number
+  // numerator: number
+  // denominator: number
+  // clocksPerTick: number
+  // // notated32: number
+  // key: number
+  // isMajoer: boolean
+  // note: number
+  // velocity: number
+  // value: number
+  // control: number
+  // program: number
+  // pitch: number
+  // data: number[]
   note: number
-  velocity: number
-  value: number
-  control: number
-  program: number
-  pitch: number
-  data: number[]
 }
 
 export type Track = {
+  name: string
   messages: Message[]
 }
 

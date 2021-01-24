@@ -8,12 +8,12 @@ import { fileAsUInt8Array } from './utils'
 import { RadioButton } from './ui/RadioButton'
 import { Button } from './ui/Button'
 
-uploadSongEffect.use((v) => {
-  return delayV(({} as unknown) as Song, 1000)
-})
+// uploadSongEffect.use((v) => {
+//   return delayV(({} as unknown) as Song, 1000)
+// })
 
 type FormValues = {
-  type: 'gp3' | 'gp5' | 'midi'
+  fileType: 'gp3' | 'gp5' | 'midi'
   file: unknown
 }
 
@@ -76,26 +76,18 @@ export const UploadForm = () => {
             </Field>
           </div>
           <div className="mb-4 inline-flex">
-            <RadioButton<FormValues, 'type'>
-              position="left"
-              name="type"
-              value="gp3"
-              content="GP3"
-              values={values}
-            />
-            <RadioButton<FormValues, 'type'>
-              position="between"
-              name="type"
-              value="gp5"
-              content="GP5"
-              values={values}
-            />
-            <RadioButton<FormValues, 'type'>
-              position="right"
-              name="type"
-              value="midi"
-              content="Midi"
-              values={values}
+            <Field
+              name="fileType"
+              render={({ input }) => (
+                <RadioButton
+                  options={[
+                    { value: 'gp3', label: 'GP3' },
+                    { value: 'gp5', label: 'GP5' },
+                    { value: 'midi', label: 'Midi' },
+                  ]}
+                  {...input}
+                />
+              )}
             />
           </div>
           <div>

@@ -25,4 +25,15 @@ type SongController(_logger: ILogger<SongController>) =
         }
 
     [<HttpPost>]
-    member _.Process() = [ 1 ]
+    [<Route("process")>]
+    member _.Process() =
+        async {
+            let! bytes =
+                IO.File.ReadAllBytesAsync("./test.gp3")
+                |> Async.AwaitTask
+
+            let gpfile = GP.Create("test.gp3", bytes)
+            let native = NativeFormat(gpfile)
+
+            return FromNative.toSong native
+        }

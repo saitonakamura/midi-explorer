@@ -189,6 +189,8 @@ type TailwindTranslate = `${'' | '-'}${
 
 type TailwindTransforms = TailwindTransform | TailwindTranslate
 
+type TailwindAppearance = 'appearance-none'
+
 type TailwindCursorType =
   | '-auto'
   | '-default'
@@ -202,7 +204,10 @@ type TailwindCursor = `cursor${TailwindCursorType}`
 
 type TailwindPointerEvents = 'pointer-events-none' | 'pointer-events-auto'
 
-type TailwindInteractivity = TailwindCursor | TailwindPointerEvents
+type TailwindInteractivity =
+  | TailwindAppearance
+  | TailwindCursor
+  | TailwindPointerEvents
 
 type TailwindHover = `hover:${TailwindBackColor | TailwindTextColor}`
 
