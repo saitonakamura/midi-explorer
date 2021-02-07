@@ -17,3 +17,5 @@ export const fileAsUInt8Array = (file: File): Promise<Uint8Array> =>
     }
     reader.readAsArrayBuffer(file)
   })
+
+export const noop = () => undefined
