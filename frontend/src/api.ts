@@ -1,5 +1,6 @@
 import { createEffect } from 'effector'
 import { validate } from 'superstruct-ts-transformer'
+import { createMutationRemoteData } from './remoteData'
 
 export type Message = {
   // type: string
@@ -62,3 +63,8 @@ const _uploadSong = (data: FIXME): Promise<Song> =>
 export const uploadSongEffect = createEffect('uploadSong', {
   handler: _uploadSong,
 })
+
+export const uploadSongStore = createMutationRemoteData(
+  uploadSongEffect,
+  'uploadSong',
+)

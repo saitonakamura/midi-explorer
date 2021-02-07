@@ -1,13 +1,13 @@
 module.exports = {
-  purge: [
-    './src/**/*.tsx'
-  ],
+  purge: ['./src/**/*.tsx'],
   darkMode: 'class', // or 'media' or 'class'
   theme: {
     extend: {},
   },
   variants: {
-    extend: {},
+    extend: {
+      backgroundOpacity: ['dark'],
+    },
   },
   plugins: [],
 }

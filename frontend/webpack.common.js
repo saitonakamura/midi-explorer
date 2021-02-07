@@ -60,6 +60,7 @@ const config = (env) => {
                   options: {
                     plugins: [
                       !isProduction && require.resolve('react-refresh/babel'),
+                      !isProduction && require.resolve('effector/babel-plugin'),
                     ].filter(Boolean),
                   },
                 }

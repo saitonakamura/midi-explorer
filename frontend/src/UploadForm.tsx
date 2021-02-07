@@ -9,9 +9,9 @@ import { RadioButton } from './ui/RadioButton'
 import { Button } from './ui/Button'
 import { Paper } from './ui/Paper'
 
-// uploadSongEffect.use((v) => {
-//   return delayV(({} as unknown) as Song, 1000)
-// })
+uploadSongEffect.use((v) => {
+  return delayV(({} as unknown) as Song, 1000)
+})
 
 type FormValues = {
   fileType: 'gp3' | 'gp5' | 'midi'
@@ -116,7 +116,6 @@ export const UploadForm = () => {
               />
             </div>
           </Paper>
-          {uploadSongEffect.done && <Paper className={tw([])}>asd</Paper>}
         </>
       )}
     />

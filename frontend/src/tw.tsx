@@ -2,13 +2,13 @@ import classnames from 'classnames'
 
 type TailwindPosition = 'static' | 'absolute' | 'fixed' | 'relative' | 'sticky'
 
-type TailwindTRBLSize = '-1/2' | '-full'
+type TailwindTRBLSize = '0' | '1/2' | 'full'
 
 type TailwindTRBL = `${'' | '-'}${
   | 'top'
   | 'right'
   | 'bottom'
-  | 'left'}${TailwindTRBLSize}`
+  | 'left'}-${TailwindTRBLSize}`
 
 type TailwindLayout = TailwindPosition | TailwindTRBL
 
@@ -35,6 +35,10 @@ type TailwindPadding = `p${TailwindPaddingSide}${TailwindPaddingSize}`
 type TailwindSpacing = TailwindPadding
 
 export type TailwindHeightWidthSize =
+  | '0'
+  | '0.5'
+  | '1'
+  | '1.5'
   | '4'
   | '5'
   | '6'
@@ -47,6 +51,10 @@ export type TailwindHeightWidthSize =
   | '14'
   | '16'
   | '20'
+  | 'full'
+  | 'screen'
+  | 'min'
+  | 'max'
 
 type TailwindWidth = `w-${TailwindHeightWidthSize}`
 
@@ -116,7 +124,9 @@ type TailwindTypography =
 
 type TailwindBackColor = `bg-${TailwindColor}`
 
-type TailwindBackgrounds = TailwindBackColor
+type TailwindBackOpacity = `bg-opacity-${TailwindOpacitySize}`
+
+type TailwindBackgrounds = TailwindBackColor | TailwindBackOpacity
 
 type TailwindBorderRadiusSize =
   | '-none'
@@ -156,22 +166,22 @@ type TailwindBoxShadow =
   | 'shadow-none'
 
 type TailwindOpacitySize =
-  | '-0'
-  | '-5'
-  | '-10'
-  | '-20'
-  | '-25'
-  | '-30'
-  | '-40'
-  | '-50'
-  | '-60'
-  | '-70'
-  | '-75'
-  | '-80'
-  | '-90'
-  | '-95'
+  | '0'
+  | '5'
+  | '10'
+  | '20'
+  | '25'
+  | '30'
+  | '40'
+  | '50'
+  | '60'
+  | '70'
+  | '75'
+  | '80'
+  | '90'
+  | '95'
 
-type TailwindOpacity = `opacity${TailwindOpacitySize}`
+type TailwindOpacity = `opacity-${TailwindOpacitySize}`
 
 type TailwindEffects = TailwindBoxShadow | TailwindOpacity
 
@@ -213,6 +223,7 @@ type TailwindHover = `hover:${TailwindBackColor | TailwindTextColor}`
 
 type TailwindDarkMode = `dark:${
   | TailwindBackColor
+  | TailwindBackOpacity
   | TailwindTextColor
   | TailwindHover}`
 
